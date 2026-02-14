@@ -68,3 +68,33 @@ export const getMe = async (req: AuthRequest, res: Response) => {
   };
   res.status(200).json(user);
 };
+
+export const updateProfile = async (req: AuthRequest, res: Response) => {
+  try {
+    const user = await User.findById(req.user?._id);
+
+    if (!user) {
+      res.status(404).json({ message: 'User not found' });
+      return;
+    }
+
+    user.username = req.body.username || user.username;
+    user.email = req.body.email || user.email;
+
+    if (req.body.password) {
+      user.password = req.body.password;
+    }
+
+    const updatedUser = await user.save();
+
+    res.json({
+      _id: updatedUser._id,
+      username: updatedUser.username,
+      email: updatedUser.email,
+      role: updatedUser.role,
+      token: generateToken(updatedUser._id as unknown as string),
+    });
+  } catch (error: any) {
+    res.status(500).json({ message: error.message });
+  }
+};

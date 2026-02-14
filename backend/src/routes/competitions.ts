@@ -50,24 +50,27 @@ router.delete('/:id', protect, admin, async (req: Request, res: Response) => {
 });
 
 // Join a competition (Protected User)
-// Note: Using 'any' for req to avoid TS issues with AuthRequest incompat in route definitions if strict
 router.post('/:id/join', protect, async (req: any, res: Response) => {
   try {
-    const userId = req.user._id; // Get from protected token
+    const userId = req.user._id.toString();
     const competition = await Competition.findById(req.params.id);
 
     if (!competition) {
       return res.status(404).json({ message: 'Competition not found' });
     }
 
-    if (competition.participants.includes(userId)) {
-      return res.status(400).json({ message: 'Already registered' });
+    const alreadyJoined = competition.participants.some(
+      (p) => p.toString() === userId
+    );
+
+    if (alreadyJoined) {
+      return res.status(400).json({ message: 'Already registered for this competition' });
     }
 
-    competition.participants.push(userId);
+    competition.participants.push(req.user._id);
     await competition.save();
 
-    res.json({ message: 'Successfully joined competition' });
+    res.json({ message: 'Successfully registered for competition' });
   } catch (err) {
     res.status(500).json({ message: 'Server Error' });
   }

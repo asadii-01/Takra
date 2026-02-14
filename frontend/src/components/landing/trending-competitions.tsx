@@ -48,7 +48,7 @@ export function TrendingCompetitions() {
       <div className="flex justify-between items-end mb-12">
         <div>
           <h2 className="text-4xl md:text-5xl font-heading font-bold uppercase text-white mb-2">
-            Trending <span className="text-transparent bg-clip-text bg-gradient-to-r from-accent to-white">Competitions</span>
+          <span className="text-transparent bg-clip-text bg-gradient-to-t from-accent to-white">Trending Competitions</span>
           </h2>
           <p className="text-blue-200">Join the most elite battles happening now.</p>
         </div>

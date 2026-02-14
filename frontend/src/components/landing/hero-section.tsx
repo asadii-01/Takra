@@ -53,7 +53,7 @@ export function HeroSection() {
           transition={{ delay: 0.6, duration: 0.8 }}
           className="text-lg md:text-2xl text-blue-100 max-w-2xl font-light tracking-wide"
         >
-          The Ultimate Winter Competition. Forge Your Legacy.
+          The Ultimate Competition. Forge Your Legacy.
         </motion.p>
 
         {/* CTA Buttons */}

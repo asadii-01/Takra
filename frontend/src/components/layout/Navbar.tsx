@@ -18,11 +18,9 @@ export default function Navbar() {
     <nav className="w-full z-50 bg-[#0F1C2E] border-b border-white/10 py-4 relative">
       <div className="mx-auto flex max-w-7xl items-center justify-between px-6">
         <Link href="/" className="group flex items-center gap-2 transition-opacity hover:opacity-90">
-          <div className="relative flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-br from-[#C9D6DF] to-[#EAF4FB] shadow-lg shadow-blue-500/20">
-             <Shield className="h-4 w-4 text-[#1E3A5F]" />
-          </div>
+          <img src="/images/logo.jpeg" alt="Takra Logo" className="w-10 h-10 rounded-full object-cover" />
           <span className="text-2xl font-heading font-bold tracking-tighter text-white">
-            TAKRA<span className="text-accent">.</span>
+            UCP TAKRA<span className="text-accent">.</span>
           </span>
         </Link>
         
