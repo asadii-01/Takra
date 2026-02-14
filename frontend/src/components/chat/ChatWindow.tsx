@@ -6,6 +6,7 @@ import { Button } from '@/components/ui/button';
 import Input from '@/components/ui/input';
 import { Send, User } from 'lucide-react';
 import Cookies from 'js-cookie';
+import { API_URL, SOCKET_URL } from '@/lib/config';
 
 interface Message {
   _id: string;
@@ -31,7 +32,7 @@ export default function ChatWindow() {
     }
 
     // Connect to Socket.io
-    socket = io('http://localhost:5000');
+    socket = io(SOCKET_URL);
 
     // Load history
     fetchHistory();
@@ -55,7 +56,7 @@ export default function ChatWindow() {
   const fetchHistory = async () => {
     try {
       const token = Cookies.get('token');
-      const res = await fetch('http://localhost:5000/api/chat/history', {
+      const res = await fetch(`${API_URL}/chat/history`, {
         headers: { 'Authorization': `Bearer ${token}` }
       });
       const data = await res.json();

@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { Trophy, Users, TrendingUp, Star, Settings, Plus, BarChart3, Activity } from 'lucide-react';
 import Cookies from 'js-cookie';
+import { API_URL } from '@/lib/config';
 
 export default function DashboardPage() {
   const [user, setUser] = useState<any>(null);
@@ -34,7 +35,7 @@ export default function DashboardPage() {
   const fetchAdminStats = async () => {
     const token = Cookies.get('token');
     try {
-      const res = await fetch('http://localhost:5000/api/competitions', {
+      const res = await fetch(`${API_URL}/competitions`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       const competitions = await res.json();
@@ -57,7 +58,7 @@ export default function DashboardPage() {
   const fetchUserStats = async (userId: string) => {
     const token = Cookies.get('token');
     try {
-      const res = await fetch('http://localhost:5000/api/competitions', {
+      const res = await fetch(`${API_URL}/competitions`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       const competitions = await res.json();

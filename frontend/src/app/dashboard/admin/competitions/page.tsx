@@ -5,6 +5,7 @@ import { Button } from '@/components/ui/button';
 import Input from '@/components/ui/input';
 import { Trash2, Plus } from 'lucide-react';
 import Cookies from 'js-cookie';
+import { API_URL } from '@/lib/config';
 
 interface Competition {
   _id: string;
@@ -36,7 +37,7 @@ export default function AdminCompetitionsPage() {
     try {
       // Mock data for build/demo purposes if API fails
       try {
-          const res = await fetch('http://localhost:5000/api/competitions');
+          const res = await fetch(`${API_URL}/competitions`);
           if (res.ok) {
             const data = await res.json();
             setCompetitions(data);
@@ -61,7 +62,7 @@ export default function AdminCompetitionsPage() {
     
     const token = Cookies.get('token');
     try {
-      const res = await fetch(`http://localhost:5000/api/competitions/${id}`, {
+      const res = await fetch(`${API_URL}/competitions/${id}`, {
         method: 'DELETE',
         headers: { 'Authorization': `Bearer ${token}` }
       });
@@ -81,7 +82,7 @@ export default function AdminCompetitionsPage() {
     const token = Cookies.get('token');
     
     try {
-      const res = await fetch('http://localhost:5000/api/competitions', {
+      const res = await fetch(`${API_URL}/competitions`, {
         method: 'POST',
         headers: { 
           'Content-Type': 'application/json',

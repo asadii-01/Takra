@@ -5,6 +5,7 @@ import CompetitionCard from '@/components/competitions/CompetitionCard';
 import { Button } from '@/components/ui/button';
 import { Plus } from 'lucide-react';
 import Cookies from 'js-cookie';
+import { API_URL } from '@/lib/config';
 
 interface Competition {
   _id: string;
@@ -27,7 +28,7 @@ export default function CompetitionsPage() {
 
   const fetchCompetitions = async () => {
     try {
-      const res = await fetch('http://localhost:5000/api/competitions');
+      const res = await fetch(`${API_URL}/competitions`);
       const data = await res.json();
       setCompetitions(data);
     } catch (err) {
@@ -48,7 +49,7 @@ export default function CompetitionsPage() {
     }
 
     try {
-      const res = await fetch(`http://localhost:5000/api/competitions/${id}/join`, {
+      const res = await fetch(`${API_URL}/competitions/${id}/join`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

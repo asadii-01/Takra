@@ -5,6 +5,7 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { User, Mail, Lock, CheckCircle, AlertCircle } from 'lucide-react';
 import Cookies from 'js-cookie';
+import { API_URL } from '@/lib/config';
 
 export default function ProfilePage() {
   const [user, setUser] = useState<any>(null);
@@ -23,7 +24,7 @@ export default function ProfilePage() {
   const fetchProfile = async () => {
     const token = Cookies.get('token');
     try {
-      const res = await fetch('http://localhost:5000/api/auth/me', {
+      const res = await fetch(`${API_URL}/auth/me`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       const data = await res.json();
@@ -51,7 +52,7 @@ export default function ProfilePage() {
     const token = Cookies.get('token');
 
     try {
-      const res = await fetch('http://localhost:5000/api/auth/profile', {
+      const res = await fetch(`${API_URL}/auth/profile`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',

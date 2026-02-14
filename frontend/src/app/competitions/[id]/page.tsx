@@ -8,6 +8,7 @@ import { Calendar, Trophy, Users, Shield, Share2, CheckCircle, AlertCircle } fro
 import { motion } from "framer-motion"
 import Link from "next/link"
 import Cookies from "js-cookie"
+import { API_URL } from "@/lib/config"
 
 export default function CompetitionDetailsPage() {
     const params = useParams()
@@ -25,7 +26,7 @@ export default function CompetitionDetailsPage() {
 
     const fetchCompetition = async () => {
         try {
-            const res = await fetch(`http://localhost:5000/api/competitions`)
+            const res = await fetch(`${API_URL}/competitions`)
             const data = await res.json()
             const found = data.find((c: any) => c._id === id)
             if (found) {
@@ -59,7 +60,7 @@ export default function CompetitionDetailsPage() {
         setError('')
 
         try {
-            const res = await fetch(`http://localhost:5000/api/competitions/${id}/join`, {
+            const res = await fetch(`${API_URL}/competitions/${id}/join`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

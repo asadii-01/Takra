@@ -33,7 +33,7 @@ loadKnowledgeBase();
 
 export const getChatResponse = async (message: string) => {
   try {
-    const systemPrompt = `You are Takra AI, a helpful assistant for the Takra Youth Festival platform. 
+    const systemPrompt = `You are Takra AI, a helpful assistant for the UCP Takra Competition platform. 
     Use the following CONTEXT to answer the user's question. 
     If the answer is found in the context, be specific. 
     If the answer is NOT in the context, use your general knowledge but mention that this isn't in the official rules.

@@ -16,7 +16,7 @@ const server = http.createServer(app);
 // Initialize Socket.io
 const io = new Server(server, {
   cors: {
-    origin: "http://localhost:3000", // Allow frontend to connect
+    origin: "https://takra-ucp.vercel.app", // Allow frontend to connect
     methods: ["GET", "POST"]
   }
 });

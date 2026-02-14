@@ -3,6 +3,7 @@
 import { useState, useRef, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Bot, X, Send, Sparkles } from 'lucide-react';
+import { API_URL } from '@/lib/config';
 
 interface Message {
   role: 'user' | 'assistant';
@@ -36,7 +37,7 @@ export default function AiAssistant() {
     setLoading(true);
 
     try {
-      const res = await fetch('http://localhost:5000/api/ai/chat', {
+      const res = await fetch(`${API_URL}/ai/chat`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
