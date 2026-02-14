@@ -1,0 +1,82 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    /* Primary Color Palette */
+    --primary: 213 52% 25%; /* #1E3A5F */
+    --secondary: 211 48% 44%; /* #3A6EA5 */
+    --accent: 204 100% 78%; /* #8FD3FF */
+    
+    /* Metallic & Surface */
+    --metallic-silver: 215 25% 83%; /* #C9D6DF */
+    --surface-glass: 213 52% 25% / 0.4;
+    
+    /* Backgrounds */
+    --background-start: 206 43% 95%; /* #EAF4FB */
+    --background-end: 206 20% 83%; /* #C9D6DF */
+    --background-dark: 214 51% 12%; /* #0F1C2E */
+
+    /* Text */
+    --text-primary: 214 51% 12%; /* Dark Blue/Black for light mode */
+    --text-secondary: 213 52% 25%;
+    --text-light: 0 0% 100%;
+
+    /* Borders */
+    --border-frost: 204 100% 78% / 0.3;
+    
+    /* Radius */
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    --primary: 204 100% 78%; /* Accent becomes primary in dark */
+    --secondary: 211 48% 44%;
+    --accent: 213 52% 25%;
+    
+    --background-start: 214 51% 12%;
+    --background-end: 214 60% 8%;
+    
+    --text-primary: 0 0% 100%;
+    --text-secondary: 215 25% 83%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-[hsl(var(--border-frost))];
+  }
+  body {
+    @apply bg-gradient-to-b from-[hsl(var(--background-start))] to-[hsl(var(--background-end))] text-[hsl(var(--text-primary))] min-h-screen font-sans;
+  }
+}
+
+@layer utilities {
+  .text-glow {
+    text-shadow: 0 0 10px hsl(var(--accent) / 0.5);
+  }
+  
+  .glass {
+    @apply bg-white/10 backdrop-blur-md border border-white/20 shadow-lg;
+  }
+
+  .glass-dark {
+    @apply bg-black/20 backdrop-blur-md border border-white/10 shadow-lg;
+  }
+
+  .metallic-text {
+    background: linear-gradient(180deg, #FFFFFF 0%, #C9D6DF 50%, #8FD3FF 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+  
+  @keyframes float {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-20px); }
+    100% { transform: translateY(0px); }
+  }
+}
